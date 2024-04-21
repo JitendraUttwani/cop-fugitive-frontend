@@ -6,7 +6,7 @@ const City = ({ copSelections, updateCopSelections }) => {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/cities')
+    fetch('https://cop-fugitive-backend.onrender.com/cities')
       .then(response => response.json())
       .then(data => setCities(data));
   }, []);

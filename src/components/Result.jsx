@@ -8,7 +8,7 @@ const Result = ({ copSelections }) => {
 
   useEffect(() => {
     const checkCapture = async () => {
-      const response = await fetch('http://localhost:4000/capture', {
+      const response = await fetch('https://cop-fugitive-backend.onrender.com/capture', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

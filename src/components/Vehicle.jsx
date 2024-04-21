@@ -8,7 +8,7 @@ const VehicleSelection = ({ copSelections, updateCopSelections }) => {
 
   useEffect(() => {
     // Fetch vehicle data from the backend
-    fetch('http://localhost:4000/vehicles')
+    fetch('https://cop-fugitive-backend.onrender.com/vehicles')
       .then((response) => response.json())
       .then((data) => setVehicles(data));
   }, []);
