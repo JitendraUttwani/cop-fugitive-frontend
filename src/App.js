@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import City from './components/City';
+import Vehicle from './components/Vehicle';
+import Result from './components/Result';
 
 function App() {
+  const [copSelections, setCopSelections] = useState([
+    { name: 'Cop 1', city: '', vehicle: '' },
+    { name: 'Cop 2', city: '', vehicle: '' },
+    { name: 'Cop 3', city: '', vehicle: '' },
+  ]);
+
+  const updateCopSelections = (copIndex, data) => {
+    const newSelections = [...copSelections];
+    newSelections[copIndex] = { ...newSelections[copIndex], ...data };
+    setCopSelections(newSelections);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/city-selection"
+          element={<City copSelections={copSelections} updateCopSelections={updateCopSelections} />}
+        />
+        <Route
+          path="/vehicle-selection"
+          element={<Vehicle copSelections={copSelections} updateCopSelections={updateCopSelections} />}
+        />
+        <Route
+          path="/result"
+          element={<Result copSelections={copSelections} />}
+        />
+      </Routes>
+    </Router>
   );
 }
 
